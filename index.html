@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AnaGrow — Relatório de Performance (Google Ads + GA4)</title>
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1>Relatório de Performance — Google Ads + GA4</h1>
+      <div class="subtitle">AnaGrow · e-commerce</div>
+    </div>
+    <div id="period-label"></div>
+  </header>
+
+  <section>
+    <h2>Visão geral do período</h2>
+    <div id="kpi-grid"></div>
+  </section>
+
+  <section>
+    <h2>Desempenho diário</h2>
+    <p class="note">
+      Tabela principal, ordenada do dia mais recente para o mais antigo. As colunas
+      Gasto, CTR, CR e ConvLP têm mapa de calor monocromático (uma cor por coluna) —
+      quanto mais escuro e saturado, maior o valor no período.
+      <br>
+      <strong>CTR</strong> = cliques / impressões · <strong>CR</strong> = conversões / cliques ·
+      <strong>ConvLP</strong> = conversões / page views (mede a eficiência da landing page após o clique).
+    </p>
+    <div class="table-scroll">
+      <table class="main-table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Dia</th>
+            <th>Gasto</th>
+            <th>CPM</th>
+            <th>Impressões</th>
+            <th>CTR</th>
+            <th>Cliques</th>
+            <th>CR</th>
+            <th>Page Views</th>
+            <th>ConvLP</th>
+            <th>Conversões</th>
+            <th>CPA</th>
+          </tr>
+        </thead>
+        <tbody id="main-table-body"></tbody>
+      </table>
+    </div>
+    <div class="legend-row">
+      <span class="legend-swatch"><span class="bar bar-gasto"></span> Gasto</span>
+      <span class="legend-swatch"><span class="bar bar-ctr"></span> CTR</span>
+      <span class="legend-swatch"><span class="bar bar-cr"></span> CR</span>
+      <span class="legend-swatch"><span class="bar bar-convlp"></span> ConvLP</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Investimento e conversões ao longo do tempo</h2>
+    <p class="note">Duas grandezas diferentes (R$ e nº de conversões) — gráficos separados em vez de eixo duplo.</p>
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h3>Gasto diário (R$)</h3>
+        <div class="chart-box"><canvas id="chart-gasto"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Conversões diárias</h3>
+        <div class="chart-box"><canvas id="chart-conversoes"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Taxas do funil e custos</h2>
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h3>CTR, CR e ConvLP (%)</h3>
+        <div class="chart-box"><canvas id="chart-rates"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>CPM e CPA (R$)</h3>
+        <div class="chart-box"><canvas id="chart-costs"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Funil do período</h2>
+    <p class="note">Totais acumulados: quanto do topo de funil (impressões) efetivamente chega a conversão.</p>
+    <div class="chart-grid single">
+      <div class="chart-card">
+        <div class="chart-box"><canvas id="chart-funnel"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Padrão por dia da semana</h2>
+    <p class="note">Médias por dia da semana no período — útil para orçamento e ajuste de lances por dia.</p>
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h3>Gasto médio por dia da semana</h3>
+        <div class="chart-box"><canvas id="chart-weekday"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Conversões médias por dia da semana</h3>
+        <div class="chart-box"><canvas id="chart-weekday-conv"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Cliques (Ads) vs. Sessões/Page Views (GA4)</h2>
+    <p class="note" id="tracking-note"></p>
+    <div class="chart-grid single">
+      <div class="chart-card">
+        <div class="chart-box tall"><canvas id="chart-tracking"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site">
+    Fontes: exportações do Google Ads e do Google Analytics 4 (planilha AnaGrow).
+    Relatório estático gerado a partir dos dados brutos — sem chamadas de rede em tempo de execução.
+  </footer>
+
+</div>
+
+<script src="assets/vendor/chart.umd.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

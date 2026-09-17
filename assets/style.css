@@ -1,0 +1,230 @@
+:root {
+  color-scheme: light;
+  --surface-1: #fcfcfb;
+  --page: #f9f9f7;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --grid: #e1e0d9;
+  --border: rgba(11, 11, 11, 0.10);
+  --card-shadow: 0 1px 2px rgba(11,11,11,0.06), 0 1px 1px rgba(11,11,11,0.04);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--page);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+header.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+header.top h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+header.top .subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+#period-label {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+section {
+  margin-bottom: 36px;
+}
+
+section > h2 {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  margin: 0 0 12px;
+}
+
+section > p.note {
+  color: var(--text-secondary);
+  font-size: 13px;
+  margin: -4px 0 14px;
+  max-width: 74ch;
+}
+
+/* KPI cards */
+#kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.kpi-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: var(--card-shadow);
+}
+
+.kpi-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.kpi-value {
+  font-size: 20px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Table */
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-1);
+  box-shadow: var(--card-shadow);
+  max-height: 620px;
+  overflow-y: auto;
+}
+
+table.main-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  min-width: 900px;
+}
+
+table.main-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--grid);
+  text-align: right;
+  padding: 10px 10px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+table.main-table thead th:first-child,
+table.main-table thead th:nth-child(2) {
+  text-align: left;
+}
+
+table.main-table td {
+  padding: 6px 10px;
+  text-align: right;
+  border-bottom: 1px solid var(--grid);
+  white-space: nowrap;
+}
+
+table.main-table td.col-date,
+table.main-table td.col-weekday {
+  text-align: left;
+  color: var(--text-secondary);
+}
+
+table.main-table tbody tr:hover td:not(.heat-cell) {
+  background: rgba(11,11,11,0.03);
+}
+
+td.heat-cell {
+  font-weight: 500;
+}
+
+.legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.legend-swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-swatch .bar {
+  width: 46px;
+  height: 8px;
+  border-radius: 4px;
+}
+
+.bar-gasto { background: linear-gradient(90deg, hsl(213 62% 92%), hsl(213 62% 28%)); }
+.bar-ctr { background: linear-gradient(90deg, hsl(16 72% 92%), hsl(16 72% 28%)); }
+.bar-cr { background: linear-gradient(90deg, hsl(160 65% 92%), hsl(160 65% 28%)); }
+.bar-convlp { background: linear-gradient(90deg, hsl(40 100% 92%), hsl(40 100% 28%)); }
+
+/* Charts grid */
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.chart-grid.single {
+  grid-template-columns: 1fr;
+}
+
+.chart-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: var(--card-shadow);
+}
+
+.chart-card h3 {
+  font-size: 13px;
+  margin: 0 0 10px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.chart-card .chart-box {
+  position: relative;
+  height: 260px;
+}
+
+.chart-card .chart-box.tall {
+  height: 320px;
+}
+
+footer.site {
+  color: var(--text-muted);
+  font-size: 12px;
+  margin-top: 40px;
+  border-top: 1px solid var(--grid);
+  padding-top: 16px;
+}
+
+@media (max-width: 760px) {
+  .chart-grid { grid-template-columns: 1fr; }
+}
