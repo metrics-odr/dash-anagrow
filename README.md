@@ -2,6 +2,8 @@
 
 Relatório estático de performance de Google Ads + GA4 para a AnaGrow (e-commerce).
 
+Publicado via GitHub Pages: https://metrics-odr.github.io/dash-anagrow/
+
 Abra `index.html` em um navegador (ou sirva a pasta com qualquer servidor
 estático, ex. `python3 -m http.server`). Não há build nem dependências de
 rede em tempo de execução — o Chart.js está vendorizado em `assets/vendor/`.
