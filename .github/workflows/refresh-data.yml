@@ -1,0 +1,40 @@
+name: Refresh dashboard data
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # a cada hora, no minuto 0
+  workflow_dispatch: {}    # permite disparo manual pela aba Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch latest data from Google Sheets and regenerate assets/data.js
+        run: python3 scripts/update_data.py
+
+      - name: Commit and push if data changed
+        run: |
+          if git diff --quiet -- assets/data.js; then
+            echo "No changes in assets/data.js — skipping commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/data.js
+          git commit -m "chore: refresh dashboard data [automated]"
+          git push

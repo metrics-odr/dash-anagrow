@@ -18,3 +18,18 @@ Para atualizar os dados, reexporte as duas abas da planilha e regenere
 `assets/data.js` (linha única `const RAW_DATA = [...]` com um objeto por dia:
 `date`, `gasto`, `impressions`, `clicks`, `conversions`, `sessions`,
 `pageviews`).
+
+## Atualização automática
+
+`assets/data.js` é regenerado automaticamente a cada hora pelo workflow
+`.github/workflows/refresh-data.yml`, que roda `scripts/update_data.py`. O
+script lê as abas *Google Ads* (gid `0`) e *GA4* (gid `1872956501`) da
+planilha via export CSV público e só faz commit se algo mudou — o push para
+`main` dispara o rebuild do GitHub Pages automaticamente.
+
+**Importante:** para o script conseguir ler a planilha sem autenticação, ela
+precisa estar compartilhada como "Qualquer pessoa com o link — Leitor". Sem
+isso, o workflow falha (o log mostra claramente esse motivo).
+
+Para rodar manualmente: aba *Actions* → *Refresh dashboard data* → *Run
+workflow*.
